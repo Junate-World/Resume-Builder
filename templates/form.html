@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Builder</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="text"], input[type="email"], textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #3498DB;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #2980B9;
+        }
+    </style>
+</head>
+<body>
+    <h1>Create Your Professional Resume</h1>
+    <form method="POST">
+        <!-- Personal Information -->
+        <h2>Personal Information</h2>
+        <label for="name">Name:</label>
+        <input type="text" name="name" required>
+
+        <label for="email">Email:</label>
+        <input type="email" name="email" required>
+
+        <label for="phone">Phone:</label>
+        <input type="text" name="phone" required>
+
+        <label for="location">Location:</label>
+        <input type="text" name="location" required>
+
+        <label for="github">GitHub:</label>
+        <input type="text" name="github" required>
+
+        <label for="linkedin">LinkedIn:</label>
+        <input type="text" name="linkedin" required>
+
+        <label for="portfolio">Portfolio:</label>
+        <input type="text" name="portfolio" required>
+
+        
+        <!-- Education -->
+        <h2>Education</h2>
+        <label for="education">Degree and Institution:</label>
+        <input type="text" name="education" required>
+
+        <label for="edu_details">Details (Dates, GPA, etc.):</label>
+        <textarea name="edu_details" required></textarea>
+
+        <!-- Experience -->
+        <h2>Experience</h2>
+        <label for="experience">Job Title and Company:</label>
+        <input type="text" name="experience" required>
+
+        <label for="exp_details">Details (Responsibilities, Achievements):</label>
+        <textarea name="exp_details" required></textarea>
+
+        <!-- Skills -->
+        <h2>Skills</h2>
+        <label for="skills">Enter skills separated by commas:</label>
+        <input type="text" name="skills" placeholder="e.g. Python, Flask, SQL" required>
+
+        <!-- Projects -->
+        <h2>Projects / Open Source</h2>
+        <label for="projects">Enter projects separated by commas:</label>
+        <input type="text" name="projects" placeholder="e.g. Junate Bot, Email Automation" required>
+
+        <!-- Certifications -->
+        <h2>Certifications</h2>
+        <label for="certifications">List of Certifications:</label>
+        <textarea name="certifications" placeholder="Enter the certification name" required></textarea>
+        <input type="text" name="cert_details" placeholder="Enter the link to your cerification page eg: https://www.mycert.com" required>
+        <input type="text" name="cert_issuer" placeholder="Enter the issuing firm of the certification" required>
+
+        <!-- Submit -->
+        <button type="submit">Generate Resume PDF</button>
+    </form>
+</body>
+</html>

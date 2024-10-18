@@ -1,0 +1,14 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+}
+h1, h2 {
+  color: #333;
+}
+label {
+  font-weight: bold;
+}
+input, textarea {
+  width: 100%;
+  margin-bottom: 10px;
+}

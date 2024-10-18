@@ -1,0 +1,38 @@
+
+### 2. **.gitignore**
+
+Your `.gitignore` file will prevent unnecessary or sensitive files from being pushed to the repository, such as virtual environment files, compiled Python files, and system-specific files.
+
+Here’s a sample `.gitignore` for this project:
+
+```gitignore
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+
+# Virtual Environment
+venv/
+env/
+ENV/
+.venv/
+.VENV/
+
+# macOS files
+.DS_Store
+
+# Windows files
+Thumbs.db
+desktop.ini
+
+# PDF files
+*.pdf
+
+# Log files
+*.log
+
+# PyCharm/VSCode specific files
+.idea/
+.vscode/
