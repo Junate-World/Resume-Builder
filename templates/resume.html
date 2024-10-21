@@ -4,20 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ name }}'s Resume</title>
+    
     <style>
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: 'Georgia', sans-serif;
             line-height: 1.6;
             margin: 40px;
-        }
+            
+        } 
 
         h1{
             color: #2C3E50;
             padding-bottom: 5px;
         }
-        h2, h3 {
+        h2, .title {
             color: #2C3E50;
-            border-bottom: 1px solid #3498DB;
+            border-bottom: 1px solid #3f4141;;
             padding-bottom: 5px;
         }
         .header {
@@ -29,7 +31,7 @@
         }
         .contact-info a, a {
             text-decoration: none;
-            color: #3498DB;
+            color: black;
         }
         .section {
             margin-bottom: 20px;
@@ -37,7 +39,7 @@
         .section-title {
             font-size: 18px;
             margin-bottom: 10px;
-            color: #2980B9;
+            color: #3f4141;;
         }
         .content {
             padding-left: 10px;
@@ -52,8 +54,33 @@
         .experience-item p, .education-item p {
             margin: 5px 0;
             font-size: 14px;
-            color: #7F8C8D;
+            color: #3f4141;
         }
+        .expi, .edu{
+            display: flex;
+            flex-direction: row;
+            overflow: hidden;
+            width: 100%; 
+            margin-bottom: 5px;           
+        }
+
+        .expi_1, .edu_1{
+            
+            flex-direction: row;
+            
+            float: left;
+        }
+
+        .expi_2, .edu{
+            
+            flex-direction: row;
+            text-align: right;
+            float: right;
+        }
+        .ed_item{
+            font-weight: bold;
+        }
+
         .skills, .projects {
             list-style: none;
             padding-left: 0;
@@ -67,6 +94,11 @@
             margin-bottom: 5px;
             border-radius: 3px;
         }
+
+        #husk{
+            text-decoration: dashed;
+        }
+       
     </style>
 </head>
 <body>
@@ -74,52 +106,104 @@
         <h1>{{ name }}</h1>
     </div>
     <div class="contact-info">
+        
         <p><a href="mailto:{{ email }}">{{ email }}</a> | {{ phone }} |  {{ location }}</p>
-        <p>
-            <a href="{{ github }}">GitHub</a> | 
-            <a href="{{ linkedin }}">LinkedIn</a> | 
-            <a href="{{ portfolio }}">Portfolio</a> 
-           
-        </p>
+        
+        <p class="lin">
+        {% for pro in profiles %}
+            <a href="{{ pro.details }}"> {{ pro.title }} |</a>
+       {% endfor %}
+    </p>  
     </div>
 
+
     <div class="section">
-        <h2>Education</h2>
+        <p class="title">EDUCATION</p>
+        {% for edu in educations %}
         <div class="education-item">
-            <h4>{{ education }}</h4>
-            <p>{{ edu_details }}</p>
+            <div class="edu">
+                <div class="edu_1 ed_item"><span>{{ edu.title }}</span></div>
+                <div class="edu_2"><span>{{ edu.location}}</span></div>
+            </div>
+            <div class="edu">
+                <div class="edu_1"><span>{{ edu.study }} |</span> <span> {{ edu.degree }}</span></div>
+                <div class="edu_2"><span>{{ edu.duration }}</span></div>
+            </div>
+            <p>CGPA: {{ edu.cgpa }}</p>
+
         </div>
+        {% endfor %}
     </div>
 
+
+
     <div class="section">
-        <h2>Experience</h2>
+        <p class="title">EXPERIENCE</p>
+        {% for exp in experiences %}
         <div class="experience-item">
-            <h4>{{ experience }}</h4>
-            <p>{{ exp_details }}</p>
+            <div class="expi">
+                <div class="expi_1 ed_item">
+                    <span>{{ exp.title }} |</span>
+                    <span> {{ exp.position }}</span>
+                </div>
+                <div class="expi_2">
+                    <span>{{ exp.location }} |</span>
+                    <span> {{ exp.duration }}</span>
+                </div>
+            </div>
         </div>
-    </div>
-
-    <div class="section">
-        <h2>Skills</h2>
-        <ul class="skills">
-            {% for skill in skills %}
-              <li>{{ skill }}</li>
-            {% endfor %}
+        <p>
+            {% for expe in exp.details %}
+        <ul>
+            <li>{{ expe }}</li>
         </ul>
-    </div>
+        {% endfor %}
+        </p>
+        {% endfor %}
+      </div>
+      
 
     <div class="section">
-        <h2>Projects / Open Source</h2>
-        <ul class="projects">
-            {% for project in projects %}
-            <li>{{ project }}</li>
-            {% endfor %}
-        </ul>
+        <p class="title">SKILLS</p>
+        
+        {% for skill in skills %}
+            <p><span>{{ skill.title }}</span>  :  <span>{{ skill.lang | join(", ")}}</span></p>
+        {% endfor %}
+      
     </div>
 
+
+
     <div class="section">
-        <h2>Certifications</h2>
-        <span>{{ certifications }} -</span><a href="{{ cert_details }}"> {{ cert_issuer }}</a>
+        <p class="title">PROJECTS / OPEN SOURCE</p>
+        {% for proj in projects %}
+        <div class="project-item">
+            
+            <div class="edu">
+                <div class="edu_1"><span>{{ proj.title }} | </span> <a href="{{ proj.link }}">Link</a></div>
+                <div class="edu_2"><span>{{ proj.skills }}</span></div>
+            </div>
+            <p>{{ proj.details }}</p>
+
+        </div>
+        {% endfor %}
+    </div>
+
+
+
+    <div class="section">
+        <p class="title">CERTIFICATION</p>
+        {% for cer in certifications %}
+        <div class="certification-item">
+            <ul>
+                <li>{{ cer.title }} -<a href="{{ cer.details }}"> {{ cer.issuer }}</a></li>
+            </ul> 
+        </div>
+        {% endfor %}
+      </div>
+
+  
+       
     </div>
 </body>
 </html>

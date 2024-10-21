@@ -4,10 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Resume Builder</title>
-    <style>
+    
+    <style> 
         body {
             font-family: Arial, sans-serif;
             margin: 20px;
+            background-color: rgb(12, 40, 54);
+            color: rgb(249, 251, 252);
         }
         form {
             max-width: 600px;
@@ -36,70 +39,176 @@
         button:hover {
             background-color: #2980B9;
         }
+        .remove-btn {
+            background-color: #e74c3c;
+            margin-top: 5px;
+        }
+        select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .dtails{
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            font-size: 16px;
+            color: darkgray;
+
+        }
     </style>
 </head>
+
 <body>
     <h1>Create Your Professional Resume</h1>
     <form method="POST">
         <!-- Personal Information -->
         <h2>Personal Information</h2>
-        <label for="name">Name:</label>
-        <input type="text" name="name" required>
-
-        <label for="email">Email:</label>
-        <input type="email" name="email" required>
-
-        <label for="phone">Phone:</label>
-        <input type="text" name="phone" required>
-
-        <label for="location">Location:</label>
-        <input type="text" name="location" required>
-
-        <label for="github">GitHub:</label>
-        <input type="text" name="github" required>
-
-        <label for="linkedin">LinkedIn:</label>
-        <input type="text" name="linkedin" required>
-
-        <label for="portfolio">Portfolio:</label>
-        <input type="text" name="portfolio" required>
+        
+        <input type="text" name="name" placeholder="Enter your name..." required>
+        
+        <input type="email" name="email" placeholder="Enter your email..." required>
+        
+        <input type="text" name="phone" placeholder="Enter your phone number with country code. Eg +234-----" required>
+        
+        <input type="text" name="location" placeholder="Enter your address.." required>
+ 
+        
+         <!-- Profile Links -->
+         
+         <div id="profile-container">
+             <div class="profile-item">
+                <h3>Profile 1</h3>
+                <label for="profile_1">Profile Links:</label>
+                <input type="text" name="profile_1" placeholder="Enter link file name Eg Github, LinkedIn, etc..." required>
+                <input type="text" name="profile_address_1" placeholder="Enter link address. Eg https://www.myportfolio.com..." required>
+            </div>
+        </div>
+        <button type="button" onclick="addProfile()">Add Another Link Profile</button>
 
         
         <!-- Education -->
         <h2>Education</h2>
-        <label for="education">Degree and Institution:</label>
-        <input type="text" name="education" required>
-
-        <label for="edu_details">Details (Dates, GPA, etc.):</label>
-        <textarea name="edu_details" required></textarea>
+        <div id="education-container">
+            <div class="education-item">
+                <h3>Education 1</h3>
+                <label for="education_1">Institution and Degree:</label>
+                <input type="text" name="education_1" placeholder="Enter name of institution..." required>
+                <input type="text" name="edu_location_1" placeholder="Enter location... Eg. state, country..." required>
+                <input type="text" name="edu_study_1" placeholder="Enter course of study..." required> 
+                <input type="text" name="edu_degree_1" placeholder="Enter name of degree. eg, Bachelors, Associate, HND, etc..." required>
+                <input type="text" name="edu_duration_1" placeholder="Enter duration of study... Eg Month year - Month year, (March 2024 - May 2024 or current)..." required>
+                <input type="text" name="edu_cgpa_1" placeholder="Enter CGPA..." required>
+            </div>
+        </div>
+        <button type="button" onclick="addEducation()">Add Another Education</button>
 
         <!-- Experience -->
         <h2>Experience</h2>
-        <label for="experience">Job Title and Company:</label>
-        <input type="text" name="experience" required>
+        <div id="experience-container">
+            <div class="experience-item">
+                <h3>Experience 1</h3>
+                <label for="experience_1">Job Title and Company:</label>
+                <input type="text" name="experience_1" placeholder="Enter Company name..." required>
+                <input type="text" name="exp_position_1" placeholder="Enter position..." required>
+                <input type="text" name="exp_location_1" placeholder="Enter location. Eg. state, country..." required> 
+                <input type="text" name="exp_duration_1" placeholder="Enter duration of service. Eg Month year - Month year, (March 2024 - May 2024 or current)..." required>
 
-        <label for="exp_details">Details (Responsibilities, Achievements):</label>
-        <textarea name="exp_details" required></textarea>
+                <label for="exp_details_1">Details (Responsibilities, Achievements):</label>
+                <textarea name="exp_details_1" placeholder="Enter job responsibilities. Separate each using fullstop..." required></textarea>
+            </div>
+        </div>
+        <button type="button" onclick="addExperience()">Add Another Experience</button>
 
+
+        
         <!-- Skills -->
-        <h2>Skills</h2>
-        <label for="skills">Enter skills separated by commas:</label>
-        <input type="text" name="skills" placeholder="e.g. Python, Flask, SQL" required>
+        <h2><details>
+            <summary>
+                Skills
+            </summary>
+        
+            <ul class="dtails">
+                <li>Sample</li>
+                <li>programming: ['Python', 'Java', 'JavaScript', 'C#', 'Ruby']</li>
+                <li>libraries: ['React', 'Django', 'Flask', 'jQuery']</li>
+                <li>tools: ['Git', 'Docker', 'Postman', 'Jenkins']</li>
+                <li>databases: ['MySQL', 'MongoDB', 'PostgreSQL', 'SQLite']</li>
+            </ul>
+            
+            
+        </details></h2>
+        
+        <div id="skill-container">
+            <div class="skill-item">
+                <h3>Skill 1</h3>
+                <select name="skill_1" id="skills_1" class="">
+                    <option value="None" disabled>Choose skill category</option>
+                    <option value="Programming Languages">Programming Languages</option>
+                    <option value="Libraries/Frameworks">Libraries/Frameworks</option>
+                    <option value="Tools">Tools/Platforms</option>
+                    <option value="Databases">Databases</option>
+                </select>
 
-        <!-- Projects -->
-        <h2>Projects / Open Source</h2>
-        <label for="projects">Enter projects separated by commas:</label>
-        <input type="text" name="projects" placeholder="e.g. Junate Bot, Email Automation" required>
+                <input type="text" name="skill_select_1" placeholder="Enter list of skills separated by commas..." required>
+                
+            </div>
+        </div>
+        <button type="button" onclick="addSkill()">Add Another Skill</button>
+
+        
+
+         <!-- Projects -->
+         <h2>Projects / Open Source</h2>
+         <div id="project-container">
+             <div class="project-item">
+                 <h3>Project 1</h3>
+                 <label for="project_1">Projects, links, skills used and brief description:</label>
+                 <input type="text" name="project_1" placeholder="Enter name of project..." required>
+                 <input type="text" name="project_link_1" placeholder="Enter link to the project repository..." required>
+                 <input type="text" name="project_skills_1" placeholder="Enter skills used for the project: Eg. Python, Django, etc..." required> 
+                 <input type="text" name="project_details_1" placeholder="Enter brief description of project..." required>
+                 
+             </div>
+         </div>
+         <button type="button" onclick="addProject()">Add Another Project</button>
+ 
+
+
+
+
+
+
 
         <!-- Certifications -->
         <h2>Certifications</h2>
-        <label for="certifications">List of Certifications:</label>
-        <textarea name="certifications" placeholder="Enter the certification name" required></textarea>
-        <input type="text" name="cert_details" placeholder="Enter the link to your cerification page eg: https://www.mycert.com" required>
-        <input type="text" name="cert_issuer" placeholder="Enter the issuing firm of the certification" required>
+        <div id="certification-container">
+            <div class="certification-item">
+                <h3>Certification 1</h3>
+                
+                <input type="text" name="certification_1" placeholder="Enter certification name" required>
+                <input type="text" name="cert_details_1" placeholder="Enter the link to your cerification page eg: https://www.mycert.com" required>
+                <input type="text" name="issuer_details_1" placeholder="Enter the issuing firm of the certification" required>
+            </div>
+        </div>
+        <button type="button" onclick="addCertification()">Add Another Certifcation</button>
+        <br>
+        <br>
+
+        
+        
 
         <!-- Submit -->
         <button type="submit">Generate Resume PDF</button>
     </form>
+
+    <script src="{{ url_for('static', filename='experience.js') }}"></script>
+    <script src="{{ url_for('static', filename='education.js') }}"></script>
+    <script src="{{ url_for('static', filename='project.js') }}"></script>
+    <script src="{{ url_for('static', filename='certification.js') }}"></script>
+    <script src="{{ url_for('static', filename='links.js') }}"></script>
+    <script src="{{ url_for('static', filename='skills.js') }}"></script>
+    <script src="{{ url_for('static', filename='project.js') }}"></script>
+    
 </body>
 </html>

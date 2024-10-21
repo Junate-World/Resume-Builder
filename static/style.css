@@ -1,14 +1,6 @@
 body {
-  font-family: Arial, sans-serif;
+  font-family: Georgia, sans-serif;
   margin: 20px;
-}
-h1, h2 {
-  color: #333;
-}
-label {
-  font-weight: bold;
-}
-input, textarea {
-  width: 100%;
-  margin-bottom: 10px;
+  background-color: rgb(12, 40, 54);
+  color: rgb(249, 251, 252);
 }
